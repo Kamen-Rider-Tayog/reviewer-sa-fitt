@@ -6,6 +6,7 @@
 		<title>Reviewer ni Tayog</title>
 		<link rel="stylesheet" href="style.css" />
 		<script src="script.js" defer></script>
+		<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 	</head>
 	<body>
 		<div class="theme-toggle" onclick="toggleDarkMode()">
@@ -86,10 +87,11 @@
 			</div>
 		</div>
 
-		<div id="resultsSection" style="display: none">
+		<div id="resultsSection" style="display: none;">
 			<h2>Quiz Complete!</h2>
 			<p id="finalScore"></p>
 			<p id="userName"></p>
+			<button onclick="retryQuiz()">Try Again</button>
 		</div>
 	</body>
 </html>

@@ -155,6 +155,23 @@ button:disabled {
 	margin-bottom: 20px;
 }
 
+#finalScore {
+    font-size: 1.5em;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+#finalScore strong {
+    color: #28a745;
+    font-size: 1.2em;
+}
+
+@keyframes gold-sparkle {
+    0% { background-color: #ffd700; }
+    50% { background-color: #ffdf00; }
+    100% { background-color: #ffd700; }
+}
+
 .theme-toggle {
 	position: fixed;
 	top: 20px;

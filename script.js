@@ -476,8 +476,56 @@ function nextQuestion() {
 function showResults() {
 	document.getElementById("quizSection").style.display = "none";
 	document.getElementById("resultsSection").style.display = "flex";
-	document.getElementById(
-		"finalScore"
-	).textContent = `Your Score: ${score}/${questions.length}`;
-	document.getElementById("userName").textContent = `Name: ${userName}`;
+
+	const percentage = Math.round((score / questions.length) * 100);
+	let message = "";
+	let emoji = "";
+
+	if (percentage >= 90) {
+		message = "Perfect! You're a fitness expert! 🎯";
+		emoji = "🏆";
+		triggerConfetti("gold");
+	} else if (percentage >= 70) {
+		message = "Great job! You know your stuff! 👍";
+		emoji = "✨";
+		triggerConfetti("blue");
+	} else if (percentage >= 50) {
+		message = "Good effort! Keep learning! 💪";
+		emoji = "🔰";
+	} else {
+		message = "BOBO MO! 📚";
+		emoji = "🌱";
+	}
+
+	document.getElementById("finalScore").innerHTML = `
+        Score: <strong>${score}/${questions.length}</strong> (${percentage}%) ${emoji}<br>
+        ${message}
+    `;
+	document.getElementById("userName").textContent = `Player: ${userName}`;
+}
+
+function triggerConfetti(color) {
+	const confettiConfig = {
+		particleCount: 150,
+		spread: 70,
+		origin: { y: 0.6 },
+		colors: color === "gold" ? ["#ffd700", "#ffdf00"] : ["#00b4ff", "#008cff"],
+	};
+	confetti(confettiConfig);
+
+	// Extra burst for top scores
+	if (color === "gold") {
+		setTimeout(() => {
+			confetti({
+				...confettiConfig,
+				angle: 60,
+				origin: { x: 0 },
+			});
+			confetti({
+				...confettiConfig,
+				angle: 120,
+				origin: { x: 1 },
+			});
+		}, 300);
+	}
 }
